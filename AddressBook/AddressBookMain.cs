@@ -151,10 +151,7 @@ namespace AddressBook
                 }
             }
         }
-        /// <summary>
-        /// display list of person across adress book system
-        /// </summary>
-        /// <param name="addressDictionary"></param>
+       
         public static void DisplayPerson(Dictionary<string, AddressBookMain> addressDictionary)
         {
             List<Contacts> list = null;
@@ -174,10 +171,7 @@ namespace AddressBook
                 Console.WriteLine("No person present in the address book with same city or state name");
             }
         }
-        /// <summary>
-        /// display the data 
-        /// </summary>
-        /// <param name="list"></param>
+        
         public static void DisplayList(List<Contacts> list)
         {
             foreach (var data in list)
@@ -185,10 +179,7 @@ namespace AddressBook
                 data.Display();
             }
         }
-        /// <summary>
-        /// display the person details by city or state
-        /// </summary>
-        /// <param name="dictinary"></param>
+       
         public static void PrintList(Dictionary<string, List<Contacts>> dictionary)
         {
             foreach (var data in dictionary)
@@ -202,10 +193,7 @@ namespace AddressBook
                 Console.WriteLine("-----------------------------");
             }
         }
-        /// <summary>
-        /// count number of person by city or state
-        /// </summary>
-        /// <param name="dictionary"></param>
+       
         public static void CountPerson(Dictionary<string, List<Contacts>> dictionary, string name)
         {
             if (dictionary.ContainsKey(name))
@@ -217,10 +205,7 @@ namespace AddressBook
                 }
             }
         }
-        /// <summary>
-        /// Sort the address Book by city, state and Zip.
-        /// </summary>
-        /// <param name="dictionary">The dictionary.</param>
+      
         public static void SortData(Dictionary<string, List<Contacts>> dictionary)
         {
             //store the result inthe list and display the result

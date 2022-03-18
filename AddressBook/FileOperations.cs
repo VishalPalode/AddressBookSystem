@@ -7,49 +7,75 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    internal class FileOperations
+    public class FileOperations
     {
-        /// <summary>
-        /// write person details into data.txt
-        /// </summary>
-        /// <param name="addressDictionary"></param>
-        public static void WriteInTextFile(Dictionary<string, AddressBookMain> List, string filePath)
+
+        public static void FileExists()
         {
-            if (File.Exists(filePath))
-            {
-                //using streamWriter write the data into the file 
-                StreamWriter writer = new StreamWriter(filePath);
-                foreach (KeyValuePair<string, AddressBookMain> kv in List)
-                {
-                    //write line method append next dat in the next line
-                    writer.WriteLine("AddressBook Name:" + kv.Key);
-                    foreach (var list in kv.Value.getContacts())
-                    {
-                        writer.WriteLine("Name:" + list.firstName + " " + list.lastName + " Address:" + list.address + " City:" + list.city + " State:" + list.state + " Zipcode:" + list.zipCode + " Ph.No:" + list.phoneNumber + " Email:" + list.email);
-                    }
-                }
-                //close the stream
-                writer.Close();
-            }
+            String path = @"C:\Users\Lenovo\source\repos\AddressBookSystem\AddressBook\File\PersonInfo.txt";
+            if (File.Exists(path))
+                Console.WriteLine("File exists");
             else
+                Console.WriteLine("File doesn't exists");
+        }
+
+        public static void ReadAllLines()
+        {
+            String path = @"C:\Users\Lenovo\source\repos\AddressBookSystem\AddressBook\File\PersonInfo.txt";
+            String[] lines;
+            //C:\Users\Lenovo\source\repos\FileIODemo\Example.txt
+            lines = File.ReadAllLines(path);
+            Console.WriteLine(lines[0]);
+            Console.WriteLine(lines[1]);
+            Console.WriteLine(lines[2]);
+            Console.WriteLine(lines[3]);
+        }
+        public static void ReadAllText()
+        {
+            String path = @"C:\Users\Lenovo\source\repos\AddressBookSystem\AddressBook\File\PersonInfo.txt";
+            String lines;
+            lines = File.ReadAllText(path);
+            Console.WriteLine(lines);
+
+        }
+        public static void FileCopy()
+        {
+            String path = @"C:\Users\Lenovo\source\repos\AddressBookSystem\AddressBook\File\PersonInfo.txt";
+            String copypath = @"C:\Users\Lenovo\source\repos\AddressBookSystem\AddressBook\File\PersonInfo.txt";
+
+            File.Copy(path, copypath);
+            Console.WriteLine(path, copypath);
+
+        }
+        public static void DeleteFile()
+        {
+            String path = @"C:\Users\Lenovo\source\repos\AddressBookSystem\AddressBook\File\PersonInfo.txt";
+
+            File.Delete(path);
+
+        }
+        public static void ReadFromStreamReader()
+        {
+            String path = @"C:\Users\Lenovo\source\repos\AddressBookSystem\AddressBook\File\PersonInfo.txt";
+
+            using (StreamReader sr = File.OpenText(path))
             {
-                Console.WriteLine("File not exists");
+                String s = String.Empty;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(s);
+                }
             }
         }
-        /// <summary>
-        /// Reading data from data.txt and display to the console
-        /// </summary>
-        /// <param name="filePath"></param>
-        public static void ReadFromTextFile(string filePath)
+        public static void WriteUsingStreamWriter()
         {
-            Console.WriteLine("<---------Data from Text File---------->");
-            using (StreamReader file = new StreamReader(filePath))
+            String path = @"C:\Users\Lenovo\source\repos\AddressBookSystem\AddressBook\File\PersonInfo.txt";
+
+            using (StreamWriter sr = File.AppendText(path))
             {
-                string line;
-                while ((line = file.ReadLine()) != null)
-                {
-                    Console.WriteLine(line);
-                }
+                sr.WriteLine("Hellow World - .Net is awesome1");
+                sr.Close();
+                Console.WriteLine(File.ReadAllText(path));
             }
         }
     }

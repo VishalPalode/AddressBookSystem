@@ -9,7 +9,7 @@ namespace AddressBook
 {
     public class AddressBook
     {
-        readonly string filePath = @"C:\Users\Lenovo\source\repos\AddressBookSystem\File\PersonInfo.txt";
+        readonly string filePath = @"C:\Users\Lenovo\source\repos\AddressBookSystem\AddressBook\File\PersonInfo.txt";
         static AddressBookMain addressBookMain = new AddressBookMain();
         static Dictionary<string, AddressBookMain> addressBook = new Dictionary<string, AddressBookMain>();
         static Dictionary<string, List<Contacts>> cityDictionary = new Dictionary<string, List<Contacts>>();
@@ -97,8 +97,14 @@ namespace AddressBook
                         AddressBookMain.SortData(cityDictionary);
                         break;
                     case 13:
-                        FileOperations.WriteInTextFile(addressBook, filePath);
-                        FileOperations.ReadFromTextFile(filePath);
+                        //FileOperations.FileExists();
+                        //FileOperations.ReadAllLines();
+                        //FileOperations.ReadAllText();
+                        //FileOperations.FileCopy();
+                        //FileOperations.DeleteFile();
+                       // FileOperations.ReadFromStreamReader();
+                        FileOperations.WriteUsingStreamWriter();
+
                         break;
                     case 0:
                         CONTINUE = false;
@@ -115,10 +121,7 @@ namespace AddressBook
             string addBookName = Console.ReadLine();
             addressBook.Add(addBookName, addressBookMain);
         }
-        /// <summary>
-        /// This method is used to add a new contact.
-        /// </summary>
-        /// <param name="addressBookMain"></param>
+       
         public static void AddDetails(AddressBookMain addressMain, Dictionary<string, List<Contacts>> cityDictionary, Dictionary<string, List<Contacts>> stateDictionary)
         {
             Console.WriteLine("Enter first Name");
@@ -151,11 +154,7 @@ namespace AddressBook
             }
             Console.WriteLine("All Address Book Added successfully! \n");
         }
-        /// <summary>
-        /// method to find the address of particular address book.
-        /// </summary>
-        /// <param name="addBook"></param>
-        /// <returns></returns>
+        
         public static AddressBookMain BookName(Dictionary<string, AddressBookMain> addBook)
         {
             addressBook = addBook;
